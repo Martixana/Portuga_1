@@ -18,20 +18,20 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-   <![endif]-->
+     
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Bootstrap Theme Grayscale CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
 
-    <!-- MAIN.CSS-->
+    <!-- MAIN.CSS & Style.CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--JS Files-->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/app.js"></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -64,6 +64,9 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#Menu">Menu</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#reservations">Reservations</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#MoreInfo">More Info</a>
@@ -100,10 +103,6 @@
                 <h2>About Portug<span>a</span></h2>
                 <div class="about_Por">
                     <p><span>Portuga</span>, originally a nickname given to Portuguese immigrants around the world, opened its doors as a premier San Francisco dining establishment in 2004. A unique tribute to the rich &amp; varied regional tapa-style delicacies of Portugal. From spicey to sweet, fine sea food to street food, we promise you've never had anything like it. </p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
             </div>
         </div>
@@ -280,6 +279,59 @@
     </section>
 
 
+    <!--=====RESERVATIONS SECTION=======-->
+
+    <section id="reservations" class="card register" ng-app="myApp" ng-controller="RegistrationController">
+  <form name="myform"
+        ng-submit="register()"
+        novalidate>
+
+    <div class="textintro">
+      <h1>Reservations</h1>
+      <p>Please make reservations at least 15 days in advance</p>
+      <p id="confirmation" ng-show="message">{{message}}</p>
+    </div>
+
+    <fieldset>
+      <input type="text" name="firstname" 
+        placeholder="First Name"
+        ng-model="guest.firstname"
+        ng-required="true">
+         <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">Enter First Name</p>
+
+      <input type="text" name="lastname"
+        placeholder="Last Name"
+        ng-model="guest.lastname"
+        ng-required="true">
+        <p class="error validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched">Enter Last Name</p>
+      
+      <input type="email" name="email"
+        placeholder="Email"
+        ng-model="guest.email"
+        ng-required="true">
+        <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">Please Enter Valid Email Address</p>
+
+      <input class="fixData" type="date" name="date"
+        ng-model="guest.date"
+        ng-minlength="8">
+        <p class="error validationerror" ng-show="myform.date.$invalid && myform.date.$touched">Please Enter Valid date</p>
+
+      <input class="fixData" type="time" name="time"
+        ng-model="guest.time">
+
+      <input type="number" name="numberGuests"
+        placeholder="Number of Guests in Party"
+        ng-model="guest.number"
+        ng-minlength="1"
+        ng-maxlength="80">
+        <p class="error validationerror" ng-show="myform.number.$invalid && myform.number.$touched">Please Enter Valid date</p>
+    </fieldset>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+
+
     <!-- More Info -->
     <section id="MoreInfo" class="container content-section text-center">
         <div class="row">
@@ -305,9 +357,7 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div id="Info"></div>
-
+    
     <!-- Footer -->
     <footer>
         <div class="container text-center">
