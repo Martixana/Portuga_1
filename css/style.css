@@ -600,6 +600,11 @@ input.ng-valid.ng-touched{
   font-size: 1.5rem;
 
 }
+@media only screen and (max-width: 435px) {
+  input{
+    width: 80%;
+  }
+  }
 
 
 
